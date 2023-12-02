@@ -1,5 +1,5 @@
 <div style="background-color: #bfb8ae; height: 80px; padding-top: 20px">
-  <h2 class="title" style="font-weight: bold">Registrar novo cliente</h2>
+  <h2 class="title" style="font-weight: bold">Registrar novo fornecedor</h2>
 </div>
 <form
   [formGroup]="formulario"
@@ -9,7 +9,7 @@
     align-items: center;
     border: 2px solid #f0f0f0;
     padding: 15px;
-    width: 50%;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -25,15 +25,13 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="inputs">
-        <mat-label>Sobrenome</mat-label>
+        <mat-label>CNPJ</mat-label>
         <input
           matInput
           placeholder="Ex.Rodrigues"
           formControlName="sobrenome"
         />
       </mat-form-field>
-
-
     </tr>
 
     <tr class="line-2">
@@ -80,6 +78,12 @@
       <mat-form-field appearance="outline" class="inputs">
         <mat-label>Bairro</mat-label>
         <input matInput placeholder="" formControlName="bairro" />
+      </mat-form-field>
+
+
+      <mat-form-field appearance="outline" class="inputs">
+        <mat-label>Cidade</mat-label>
+        <input matInput placeholder="" formControlName="cidade" />
       </mat-form-field>
       <mat-form-field appearance="outline" class="inputs">
         <mat-label>Número</mat-label>

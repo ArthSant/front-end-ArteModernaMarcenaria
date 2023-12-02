@@ -1,0 +1,189 @@
+
+<div style="background-color: #bfb8ae; height: 80px; padding-top: 20px">
+  <h2 class="title" style="font-weight: bold">Registrar novo cliente</h2>
+</div>
+<form
+  [formGroup]="formulario"
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+  "
+  (ngSubmit)="onSubmit()"
+>
+<mat-accordion class="example-headers-align">
+
+<!-- Inicios dos campos para os dados pessoais -->
+
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Dados do Cliente
+      </mat-panel-title>
+      <mat-panel-description>
+        Nome,Contato...
+        <mat-icon>account_circle</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <table style="margin-top: 50px">
+      <tr class="line-1">
+
+        <p style="font-weight: bold">Dados Pessoais:</p>
+
+        <mat-form-field appearance="outline" class="inputs">
+          <mat-label>CPF</mat-label>
+          <input
+            matInput
+            placeholder="Ex. 000.000.000-00"
+            formControlName="cpf"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="inputs">
+          <mat-label>Nome</mat-label>
+          <input matInput placeholder="Ex.Julio" formControlName="nome" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="inputs">
+          <mat-label>Sobrenome</mat-label>
+          <input
+            matInput
+            placeholder="Ex.Rodrigues"
+            formControlName="sobrenome"
+          />
+        </mat-form-field>
+
+      </tr>
+
+      <tr class="line-2">
+        <p style="font-weight: bold">Contato:</p>
+        <mat-form-field appearance="outline" class="inputs">
+          <mat-label>Telefone</mat-label>
+          <input
+            matInput
+            placeholder="Ex. 31 987654321"
+            formControlName="contato"
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="inputs">
+          <mat-label>E-mail</mat-label>
+          <input
+            matInput
+            placeholder="Ex. pat@example.com"
+            formControlName="email"
+          />
+        </mat-form-field>
+      </tr>
+
+      <tr class="line-3">
+        <p style="font-weight: bold">Endereço:</p>
+        <mat-form-field appearance="outline" class="inputs">
+          <mat-label>Cep</mat-label>
+          <input
+            #cep
+            (blur)="consultarCep($event)"
+            matInput
+            placeholder="31456-780"
+            formControlName="cep"
+          />
+        </mat-form-field>
+      </tr>
+
+      <tr class="line-4">
+        <mat-form-field appearance="outline" class="inputs">
+          <mat-label>Rua</mat-label>
+          <input matInput placeholder="" formControlName="rua" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="inputs">
+          <mat-label>Bairro</mat-label>
+          <input matInput placeholder="" formControlName="bairro" />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="inputs">
+          <mat-label>Número</mat-label>
+          <input matInput placeholder="" formControlName="numero" />
+        </mat-form-field>
+      </tr>
+    </table>
+
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Próximo</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+    <!-- Dados pessoais termina aqui  -->
+
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Pedido
+      </mat-panel-title>
+      <mat-panel-description>
+          Detalhes do Pedido
+        <mat-icon>map</mat-icon>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+      <mat-form-field appearance="outline" class="inputs">
+      <mat-label>Nome do Pedido</mat-label>
+      <input
+        matInput
+        placeholder="Ex. Escrivaninha"
+        formControlName="nomePedido"
+      />
+      </mat-form-field>
+      <p style="margin-left: 10px;">
+      <mat-form-field>
+        <mat-label >Data do pedido</mat-label>
+        <input  matInput [matDatepicker]="picker" formControlName="dataPedido">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+
+      </p>
+
+
+      <mat-form-field appearance="outline" class="inputs">
+        <mat-label>Orçamento</mat-label>
+        <input
+          matInput
+          placeholder="Ex. 4500"
+          formControlName="orcamento"
+        />
+      </mat-form-field>
+
+
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Voltar</button>
+      <button mat-button color="primary" (click)="nextStep()">Finalizar</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <button
+  type="submit"
+  mat-raised-button
+  style="
+    background-color: #f2e3d5;
+    color: black;
+    float: right;
+    padding: 20px;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  "
+  >
+  Salvar
+  </button>
+
+</mat-accordion>
+
+</form>
+

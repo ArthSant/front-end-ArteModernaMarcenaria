@@ -2,29 +2,29 @@ import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { Cliente } from 'src/app/clientes/list-clientes/list-clientes.component';
 import { ClienteServiceService } from 'src/app/services/cliente-service.service';
 
 
-export interface Cliente {
-  id: string;
-  name: string;
-  cpf:string;
-  contato: string;
-  email:string;
 
+export interface Status {
+  nome:string;
+  cpf:string;
+  nomePedido:string;
+  orcamento:number;
+  dataPedido:Date;
+  status:string;
 }
 
 
 
 
 @Component({
-  selector: 'app-list-clientes',
-  templateUrl: './list-clientes.component.html',
-  styleUrls: ['./list-clientes.component.scss']
+  selector: 'app-em-andamento',
+  templateUrl: './em-andamento.component.html',
+  styleUrls: ['./em-andamento.component.scss']
 })
-export class ListClientesComponent {
-
-
+export class EmAndamentoComponent {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
@@ -37,8 +37,8 @@ export class ListClientesComponent {
 
     listaClientes : any[] = [];
 
-    displayedColumns: string[] = ['id', 'nome', 'cpf', 'contato','email'];
-    dataSource: MatTableDataSource<Cliente>;
+    displayedColumns: string[] = ['status', 'nome', 'cpf', 'nomePedido','orcamento','dataPedido'];
+    dataSource: MatTableDataSource<Status>;
 
 
   ngAfterViewInit() {
@@ -58,22 +58,18 @@ export class ListClientesComponent {
 
   ngOnInit () : void {
 
-    this.pegarClientes();
+    this.pegarStatus();
 
   }
 
 
 
-  pegarClientes() {
-    this.clienteService.getList().subscribe((data : Cliente[] )=> {
+  pegarStatus() {
+    this.clienteService.getList().subscribe((data : Status[] )=> {
         this.dataSource.data = data;
         console.log(data);
 
     })
   }
 
-
 }
-
-
-
