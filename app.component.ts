@@ -11,7 +11,7 @@ interface FoodNode {
 const TREE_DATA: FoodNode[] = [
   {
     name: 'Cliente',
-    children: [{name: 'Cadastrar'}, {name: 'Listar'}, {name: 'Status'}],
+    children: [{name: 'Cadastrar'}, {name: 'Listar'}],
   },
   {
     name: 'Fornecedor',
@@ -20,7 +20,7 @@ const TREE_DATA: FoodNode[] = [
 
   {
     name:'Pedidos',
-    children:[{name:'Finalizados'},{name:'Em andamento'},{name:'Cancelados'}]
+    children:[{name:'Finalizados'},{name:'Andamento'},{name:'Cancelados'}]
   },
 
   {

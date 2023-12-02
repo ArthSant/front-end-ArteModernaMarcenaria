@@ -28,13 +28,28 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FormsModule} from '@angular/forms';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegistrarComponent } from './fornecedores/registrar/registrar.component';
+import { ListaComponent } from './fornecedores/lista/lista.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { RegistrarPedidoComponent } from './clientes/registrar-pedido/registrar-pedido.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { EmAndamentoComponent } from './pedidos/em-andamento/em-andamento.component';
+
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     FormCadastroClienteComponent,
-    ListClientesComponent
+    ListClientesComponent,
+    RegistrarComponent,
+    ListaComponent,
+    RegistrarPedidoComponent,
+    EmAndamentoComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +68,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatTableModule,
     MatPaginatorModule,
     MatSlideToggleModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatButtonToggleModule,
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
