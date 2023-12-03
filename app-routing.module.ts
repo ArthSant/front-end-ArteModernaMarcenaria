@@ -4,14 +4,18 @@ import { FormCadastroClienteComponent } from './clientes/form-cadastro-cliente/f
 import { ListClientesComponent } from './clientes/list-clientes/list-clientes.component';
 import { RegistrarComponent } from './fornecedores/registrar/registrar.component';
 import { RegistrarPedidoComponent } from './clientes/registrar-pedido/registrar-pedido.component';
-import { EmAndamentoComponent } from './pedidos/em-andamento/em-andamento.component';
+import { EmAndamentoComponent } from './pedidos/status/status.component';
+import { HomeComponent } from './home/home.component';
+import { OrcamentoComponent } from './orcamento/orcamento.component';
 
 const routes: Routes = [
+  {path: '' , component:HomeComponent},
   {path:'Cadastrar' , component:FormCadastroClienteComponent},
   {path:'Listar' , component:ListClientesComponent},
   {path:'Registrar', component:RegistrarComponent},
   {path:'novo/pedido', component:RegistrarPedidoComponent},
-  {path:'Andamento', component:EmAndamentoComponent}
+  {path:'Status', component:EmAndamentoComponent},
+  {path:'Orçamento', component:OrcamentoComponent}
 ];
 
 @NgModule({

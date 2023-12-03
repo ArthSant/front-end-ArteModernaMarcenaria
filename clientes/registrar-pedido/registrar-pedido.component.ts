@@ -2,6 +2,9 @@ import { ClienteServiceService } from './../../services/cliente-service.service'
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViaCepService } from 'src/app/services/via-cep.service';
+import {MatDialog} from '@angular/material/dialog';
+import { NotFoundComponent } from './modal/not-found/not-found.component';
+
 
 @Component({
   selector: 'app-registrar-pedido',
@@ -9,7 +12,7 @@ import { ViaCepService } from 'src/app/services/via-cep.service';
   styleUrls: ['./registrar-pedido.component.scss']
 })
 export class RegistrarPedidoComponent {
-  constructor(private cepService:ViaCepService, private fomrBuilder:FormBuilder,private clienteService:ClienteServiceService) {}
+  constructor(private cepService:ViaCepService, private fomrBuilder:FormBuilder,private clienteService:ClienteServiceService,public dialog:MatDialog) {}
 
   formulario!:FormGroup;
   afterCpfInput : boolean = false;
@@ -26,7 +29,6 @@ export class RegistrarPedidoComponent {
        bairro:['',Validators.required],
        nomePedido:['',Validators.required],
        dataPedido:['',Validators.required],
-       orcamento:''
     })
   }
 
@@ -69,6 +71,27 @@ export class RegistrarPedidoComponent {
 
     consultarCpf(event:any) : void {
       const cpf = event.target.value.replaceAll('.','').replaceAll('-','');
+      if(cpf != '') {
+          this.clienteService.getUsuario(cpf).subscribe(resultado => {
+              console.log(resultado);
+            if(resultado.idCliente != null)
+              this.preencherDados(resultado);
+            else
+              this.dialog.open(NotFoundComponent);
+
+            })
+      }
+
+    }
+
+
+    preencherDados(dados:any) {
+        if(dados != null) {
+          this.formulario.get('cpf')?.setValue(dados.cpf);
+          this.formulario.get('nome')?.setValue(dados.nome);
+          this.formulario.get('contato')?.setValue(dados.contato);
+          this.formulario.get('email')?.setValue(dados.email);
+        }
     }
 
     step = 0;
