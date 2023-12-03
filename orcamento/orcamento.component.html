@@ -1,0 +1,41 @@
+<mat-form-field appearance="outline" class="inputs">
+  <mat-label>CPF</mat-label>
+  <input #cpf matInput placeholder="Ex. 000.000.000-00" />
+</mat-form-field>
+<button
+  type="submit"
+  (click)="consultarCpf(cpf.value)"
+  mat-stroked-button
+  style="height: 60px; background-color: #bfb8ae"
+>
+  Buscar
+</button>
+
+<p style="margin: 20px">
+  <mat-form-field *ngIf="showSelect">
+    <mat-label>Selecione uma opção</mat-label>
+    <mat-select
+      [(value)]="selectedOption"
+      (selectionChange)="afterSelectedOption($event)"
+    >
+      <mat-option *ngFor="let option of options" [value]="option.value">
+        {{ option.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</p>
+
+<div *ngFor="let campo of produtos; let i = index">
+
+  <mat-form-field appearance="outline" class="inputs">
+    <mat-label>Nome do Produto</mat-label>
+    <input [(ngModel)]="produtos[i]" matInput />
+  </mat-form-field>
+  <button (click)="removerCampo(i)" mat-stroked-button style="height: 60px; background-color: #F2E3D5;">Remover</button>
+</div>
+<button
+  (click)="adicionarCampo()"
+  mat-stroked-button
+  style="height: 60px; background-color: #bfb8ae; margin-left: 20px;">
+  Adicionar campo
+</button>

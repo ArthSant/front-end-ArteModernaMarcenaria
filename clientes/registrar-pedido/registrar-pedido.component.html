@@ -23,11 +23,11 @@
   <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Dados do Cliente
+        Cliente
       </mat-panel-title>
       <mat-panel-description>
-        Nome,Contato...
-        <mat-icon>account_circle</mat-icon>
+          Dados do Cliente
+      <mat-icon>account_circle</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <table style="margin-top: 50px">
@@ -41,6 +41,7 @@
             matInput
             placeholder="Ex. 000.000.000-00"
             formControlName="cpf"
+            (blur)="consultarCpf($event)"
           />
         </mat-form-field>
 
@@ -126,7 +127,7 @@
       </mat-panel-title>
       <mat-panel-description>
           Detalhes do Pedido
-        <mat-icon>map</mat-icon>
+        <mat-icon>list_alt</mat-icon>
       </mat-panel-description>
     </mat-expansion-panel-header>
 
@@ -150,15 +151,6 @@
 
       </p>
 
-
-      <mat-form-field appearance="outline" class="inputs">
-        <mat-label>Orçamento</mat-label>
-        <input
-          matInput
-          placeholder="Ex. 4500"
-          formControlName="orcamento"
-        />
-      </mat-form-field>
 
 
     <mat-action-row>

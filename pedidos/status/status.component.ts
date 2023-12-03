@@ -1,19 +1,17 @@
 import { Component, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Cliente } from 'src/app/clientes/list-clientes/list-clientes.component';
 import { ClienteServiceService } from 'src/app/services/cliente-service.service';
 
-
-
-export interface Status {
-  nome:string;
+export interface Cliente {
+  id: string;
+  name: string;
   cpf:string;
-  nomePedido:string;
-  orcamento:number;
-  dataPedido:Date;
-  status:string;
+  contato: string;
+  email:string;
+
 }
 
 
@@ -21,10 +19,12 @@ export interface Status {
 
 @Component({
   selector: 'app-em-andamento',
-  templateUrl: './em-andamento.component.html',
-  styleUrls: ['./em-andamento.component.scss']
+  templateUrl: './status.component.html',
+  styleUrls: ['./status.component.scss']
 })
 export class EmAndamentoComponent {
+
+
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
@@ -35,10 +35,18 @@ export class EmAndamentoComponent {
 
   }
 
-    listaClientes : any[] = [];
+  listaClientes : any[] = [];
 
-    displayedColumns: string[] = ['status', 'nome', 'cpf', 'nomePedido','orcamento','dataPedido'];
-    dataSource: MatTableDataSource<Status>;
+  displayedColumns: string[] = ['id', 'nome', 'cpf', 'contato','email'];
+  dataSource: MatTableDataSource<Cliente>;
+  statusSelected = false;
+
+  selectedOption: string | undefined; // Variável para armazenar a opção selecionada
+  options = [ // Array de opções para o dropdown
+    { value: 'Finalizados', viewValue: 'Finalizados' },
+    { value: 'Em Andamento', viewValue: 'Em Andamento' },
+    { value: 'Cancelados', viewValue: 'Cancelados' },
+  ];
 
 
   ngAfterViewInit() {
@@ -56,20 +64,30 @@ export class EmAndamentoComponent {
   }
 
 
+
   ngOnInit () : void {
 
-    this.pegarStatus();
 
   }
 
 
 
-  pegarStatus() {
-    this.clienteService.getList().subscribe((data : Status[] )=> {
+  pegarClientes() {
+    this.clienteService.getList().subscribe((data : Cliente[] )=> {
         this.dataSource.data = data;
         console.log(data);
 
     })
   }
 
+
+  afterSelectedOption(event:any) {
+    console.log(this.selectedOption);
+    this.statusSelected = true;
+    this.pegarClientes();
+
+  }
+
 }
+
+

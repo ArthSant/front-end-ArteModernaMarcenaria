@@ -19,11 +19,6 @@ const TREE_DATA: FoodNode[] = [
   },
 
   {
-    name:'Pedidos',
-    children:[{name:'Finalizados'},{name:'Andamento'},{name:'Cancelados'}]
-  },
-
-  {
     name:'Simulação',
     children:[{name:'Orçamento'},{name:'Relatório'}]
   }

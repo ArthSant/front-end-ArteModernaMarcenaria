@@ -35,8 +35,16 @@ import { RegistrarPedidoComponent } from './clientes/registrar-pedido/registrar-
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
-import { EmAndamentoComponent } from './pedidos/em-andamento/em-andamento.component';
+import { EmAndamentoComponent } from './pedidos/status/status.component';
+import {MatSelectModule} from '@angular/material/select';
+import { NotFoundComponent } from './clientes/registrar-pedido/modal/not-found/not-found.component';
 
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import { HomeComponent } from './home/home.component';
+
+import {MatCardModule} from '@angular/material/card';
+import { OrcamentoComponent } from './orcamento/orcamento.component';
+import { ModalPerguntaExcluirComponent } from './clientes/list-clientes/modal-pergunta-excluir/modal-pergunta-excluir.component';
 
 
 
@@ -49,7 +57,11 @@ import { EmAndamentoComponent } from './pedidos/em-andamento/em-andamento.compon
     RegistrarComponent,
     ListaComponent,
     RegistrarPedidoComponent,
-    EmAndamentoComponent
+    EmAndamentoComponent,
+    NotFoundComponent,
+    HomeComponent,
+    OrcamentoComponent,
+    ModalPerguntaExcluirComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +84,10 @@ import { EmAndamentoComponent } from './pedidos/em-andamento/em-andamento.compon
     MatButtonToggleModule,
     MatExpansionModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule,
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

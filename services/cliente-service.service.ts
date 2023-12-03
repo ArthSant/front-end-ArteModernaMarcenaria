@@ -20,11 +20,16 @@ export class ClienteServiceService {
 
     }
 
-    public deletarUsuario(cpf:string) : Observable<any> {
+    public deletarUsuarioByCPF(cpf:string) : Observable<any> {
 
-         return this.http.delete(`http://localhost:8080/clientes/${cpf}`);
+         return this.http.delete(`http://localhost:8080/cliente/${cpf}`);
     }
 
+
+    public deletarUsuarioById(id:any) : Observable<any> {
+
+      return this.http.delete(`http://localhost:8080/cliente/${id}`);
+ }
     public atualizarUsuario(usuario:any) : Observable<any> {
       console.log(usuario);
 
@@ -33,10 +38,17 @@ export class ClienteServiceService {
     }
 
     public getUsuario(cpf:string): Observable<any> {
-      return this.http.get(`http://localhost:8080/clientes/${cpf}`);
+      return this.http.get(`http://localhost:8080/cliente/buscar/${cpf}`);
 
     }
 
     public getList() : Observable<any> {
           return this.http.get(`${this.url}cliente/listar`);
-    }}
+    }
+
+
+    public getCount() : Observable<any> {
+          return this.http.get(`${this.url}cliente/count`)
+    }
+
+  }

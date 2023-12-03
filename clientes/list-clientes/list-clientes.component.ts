@@ -1,12 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteServiceService } from 'src/app/services/cliente-service.service';
+import { ModalPerguntaExcluirComponent } from './modal-pergunta-excluir/modal-pergunta-excluir.component';
+import { UserServiceService } from 'src/app/services/user-service.service';
 
 
 export interface Cliente {
-  id: string;
+  idCliente: string;
   name: string;
   cpf:string;
   contato: string;
@@ -30,14 +33,14 @@ export class ListClientesComponent {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(private clienteService:ClienteServiceService) {
+  constructor(private clienteService:ClienteServiceService,public dialog:MatDialog,private userService:UserServiceService) {
     this.dataSource = new MatTableDataSource(this.listaClientes);
 
   }
 
     listaClientes : any[] = [];
 
-    displayedColumns: string[] = ['id', 'nome', 'cpf', 'contato','email'];
+    displayedColumns: string[] = ['idCliente', 'nome', 'cpf', 'contato','email'];
     dataSource: MatTableDataSource<Cliente>;
 
 
@@ -72,6 +75,13 @@ export class ListClientesComponent {
     })
   }
 
+
+  deleteUser(id:number) {
+      console.log(id);
+      this.userService.setId(id);
+      this.dialog.open(ModalPerguntaExcluirComponent);
+
+  }
 
 }
 
