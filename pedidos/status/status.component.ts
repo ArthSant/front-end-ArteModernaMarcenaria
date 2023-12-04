@@ -4,13 +4,13 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ClienteServiceService } from 'src/app/services/cliente-service.service';
+import { PedidoServiceService } from 'src/app/services/pedido-service.service';
 
-export interface Cliente {
-  id: string;
-  name: string;
+export interface Pedido {
+  nome: string;
+  nomePedido: string;
   cpf:string;
-  contato: string;
-  email:string;
+  status: string;
 
 }
 
@@ -30,7 +30,7 @@ export class EmAndamentoComponent {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(private clienteService:ClienteServiceService) {
+  constructor(private clienteService:ClienteServiceService,private pedidoService:PedidoServiceService) {
     this.dataSource = new MatTableDataSource(this.listaClientes);
 
   }
@@ -38,12 +38,12 @@ export class EmAndamentoComponent {
   listaClientes : any[] = [];
 
   displayedColumns: string[] = ['id', 'nome', 'cpf', 'contato','email'];
-  dataSource: MatTableDataSource<Cliente>;
+  dataSource: MatTableDataSource<Pedido>;
   statusSelected = false;
 
   selectedOption: string | undefined; // Variável para armazenar a opção selecionada
   options = [ // Array de opções para o dropdown
-    { value: 'Finalizados', viewValue: 'Finalizados' },
+    { value: 'Finalizado', viewValue: 'Finalizado' },
     { value: 'Em Andamento', viewValue: 'Em Andamento' },
     { value: 'Cancelados', viewValue: 'Cancelados' },
   ];
@@ -72,11 +72,9 @@ export class EmAndamentoComponent {
 
 
 
-  pegarClientes() {
-    this.clienteService.getList().subscribe((data : Cliente[] )=> {
+  pegarPedidos(option:any) {
+    this.pedidoService.getByStatus(option).subscribe((data : Pedido[] )=> {
         this.dataSource.data = data;
-        console.log(data);
-
     })
   }
 
@@ -84,7 +82,7 @@ export class EmAndamentoComponent {
   afterSelectedOption(event:any) {
     console.log(this.selectedOption);
     this.statusSelected = true;
-    this.pegarClientes();
+    this.pegarPedidos(this.selectedOption);
 
   }
 

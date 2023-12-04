@@ -21,6 +21,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HttpClientModule } from '@angular/common/http';
 import { ListClientesComponent } from './clientes/list-clientes/list-clientes.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 import {PageEvent, MatPaginatorModule, MatPaginator} from '@angular/material/paginator';
 import {JsonPipe} from '@angular/common';
@@ -45,6 +46,8 @@ import { HomeComponent } from './home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import { OrcamentoComponent } from './orcamento/orcamento.component';
 import { ModalPerguntaExcluirComponent } from './clientes/list-clientes/modal-pergunta-excluir/modal-pergunta-excluir.component';
+import { AtualizarPedidoComponent } from './atualizar-pedido/atualizar-pedido.component';
+import { ModalMudarStatusComponent } from './atualizar-pedido/modal-mudar-status/modal-mudar-status.component';
 
 
 
@@ -61,7 +64,9 @@ import { ModalPerguntaExcluirComponent } from './clientes/list-clientes/modal-pe
     NotFoundComponent,
     HomeComponent,
     OrcamentoComponent,
-    ModalPerguntaExcluirComponent
+    ModalPerguntaExcluirComponent,
+    AtualizarPedidoComponent,
+    ModalMudarStatusComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +92,8 @@ import { ModalPerguntaExcluirComponent } from './clientes/list-clientes/modal-pe
     MatNativeDateModule,
     MatSelectModule,
     MatDialogModule,
-    MatCardModule
+    MatCardModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

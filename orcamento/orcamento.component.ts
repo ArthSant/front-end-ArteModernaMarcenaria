@@ -14,8 +14,9 @@ export class OrcamentoComponent {
     constructor(private clienteService:ClienteServiceService, public dialog:MatDialog) {}
 
     showSelect = false;
-
+    afterSelect = false;
     produtos: string[] = [];
+    precos:string[] = [];
 
     consultarCpf(cpf:string) {
         if(cpf != '') {
@@ -40,14 +41,14 @@ export class OrcamentoComponent {
 
 
   afterSelectedOption(event:any) {
-    console.log(this.selectedOption);
-
+      this.afterSelect = true;
   }
   campos: string[] = [];
 
   // Método para adicionar um novo campo
   adicionarCampo() {
-    this.produtos.push(''); // Adiciona um novo campo vazio ao array
+    this.produtos.push(''); // Adiciona um novo campo vazio ao array2
+    this.precos.push('');
   }
 
   // Método para remover um campo
