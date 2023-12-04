@@ -1,0 +1,9 @@
+<label id="example-radio-group-label">Selecione o Status</label>
+<mat-radio-group style="padding: 100px; height: 200px; width: 100px;"
+  aria-labelledby="example-radio-group-label"
+  class="example-radio-group"
+  [(ngModel)]="favoriteSeason">
+  <ng-container *ngFor="let season of seasons">
+    <mat-radio-button class="example-radio-button" [value]="season">{{ season }}</mat-radio-button>
+  </ng-container>
+</mat-radio-group>

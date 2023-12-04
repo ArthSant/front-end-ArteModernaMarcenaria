@@ -29,13 +29,21 @@
 
   <mat-form-field appearance="outline" class="inputs">
     <mat-label>Nome do Produto</mat-label>
-    <input [(ngModel)]="produtos[i]" matInput />
+    <input [(ngModel)]="produtos[i]" matInput placeholder="Ex. " />
   </mat-form-field>
+
+  <mat-form-field appearance="outline" class="inputs">
+    <mat-label>Preço</mat-label>
+    <input [(ngModel)]="precos[i]" matInput placeholder="Ex: 4500" />
+  </mat-form-field>
+
+
   <button (click)="removerCampo(i)" mat-stroked-button style="height: 60px; background-color: #F2E3D5;">Remover</button>
 </div>
 <button
   (click)="adicionarCampo()"
   mat-stroked-button
+  *ngIf="afterSelect"
   style="height: 60px; background-color: #bfb8ae; margin-left: 20px;">
   Adicionar campo
 </button>

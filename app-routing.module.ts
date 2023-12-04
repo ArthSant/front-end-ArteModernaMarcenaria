@@ -7,6 +7,7 @@ import { RegistrarPedidoComponent } from './clientes/registrar-pedido/registrar-
 import { EmAndamentoComponent } from './pedidos/status/status.component';
 import { HomeComponent } from './home/home.component';
 import { OrcamentoComponent } from './orcamento/orcamento.component';
+import { AtualizarPedidoComponent } from './atualizar-pedido/atualizar-pedido.component';
 
 const routes: Routes = [
   {path: '' , component:HomeComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path:'Registrar', component:RegistrarComponent},
   {path:'novo/pedido', component:RegistrarPedidoComponent},
   {path:'Status', component:EmAndamentoComponent},
-  {path:'Orçamento', component:OrcamentoComponent}
+  {path:'Orçamento', component:OrcamentoComponent},
+  {path:'Atualizar' , component:AtualizarPedidoComponent}
 ];
 
 @NgModule({
