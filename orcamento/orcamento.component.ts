@@ -2,6 +2,16 @@ import { Component } from '@angular/core';
 import { ClienteServiceService } from '../services/cliente-service.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NotFoundComponent } from '../clientes/registrar-pedido/modal/not-found/not-found.component';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+
+
+interface Produto {
+  nome:string,
+  preco:number,
+  quantidade:number
+}
+
+
 
 @Component({
   selector: 'app-orcamento',
@@ -43,16 +53,14 @@ export class OrcamentoComponent {
   afterSelectedOption(event:any) {
       this.afterSelect = true;
   }
-  campos: string[] = [];
 
-  // Método para adicionar um novo campo
-  adicionarCampo() {
-    this.produtos.push(''); // Adiciona um novo campo vazio ao array2
-    this.precos.push('');
+  Produto: Produto[] = [];
+
+  addNewRow() {
+    this.Produto.push({ nome: '', preco: 0 , quantidade:0 });
   }
 
-  // Método para remover um campo
-  removerCampo(index: number) {
-    this.produtos.splice(index, 1); // Remove o campo na posição 'index' do array
+  removeRow(index: number) {
+    this.Produto.splice(index, 1);
   }
 }

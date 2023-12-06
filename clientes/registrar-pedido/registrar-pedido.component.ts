@@ -61,9 +61,6 @@ export class RegistrarPedidoComponent {
 
         }
 
-        else {
-          alert('Preencha o formulário corretamente');
-        }
     }
 
 
