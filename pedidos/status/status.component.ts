@@ -37,15 +37,16 @@ export class EmAndamentoComponent {
 
   listaClientes : any[] = [];
 
-  displayedColumns: string[] = ['id', 'nome', 'cpf', 'contato','email'];
+  displayedColumns: string[] = ['nome', 'nomePedido', 'cpf','status'];
   dataSource: MatTableDataSource<Pedido>;
   statusSelected = false;
 
   selectedOption: string | undefined; // Variável para armazenar a opção selecionada
   options = [ // Array de opções para o dropdown
-    { value: 'Finalizado', viewValue: 'Finalizado' },
-    { value: 'Em Andamento', viewValue: 'Em Andamento' },
-    { value: 'Cancelados', viewValue: 'Cancelados' },
+    { value: 'FINALIZADO', viewValue: 'FINALIZADO' },
+    { value: 'EM_ANDAMENTO', viewValue: 'EM_ANDAMENTO' },
+    { value: 'CRIADO', viewValue: 'CRIADO' },
+    { value: 'CANCELADO', viewValue: 'CANCELADO' },
   ];
 
 

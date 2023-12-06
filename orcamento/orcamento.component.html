@@ -25,25 +25,24 @@
   </mat-form-field>
 </p>
 
-<div *ngFor="let campo of produtos; let i = index">
+<table style="display: flex; justify-content: center; align-items: center;">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Preço</th>
+      <th>Qnt.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of Produto; let i = index">
+      <td><input class="input-row" type="text" [(ngModel)]="item.nome"></td>
+      <td><input class="input-row" type="text" [(ngModel)]="item.preco" style="width: 60px;"></td>
+      <td><input class="input-row" type="text" [(ngModel)]="item.quantidade" style="width: 40px;"></td>
+      <td><button (click)="removeRow(i)">Remover</button></td>
+    </tr>
+  </tbody>
 
-  <mat-form-field appearance="outline" class="inputs">
-    <mat-label>Nome do Produto</mat-label>
-    <input [(ngModel)]="produtos[i]" matInput placeholder="Ex. " />
-  </mat-form-field>
 
-  <mat-form-field appearance="outline" class="inputs">
-    <mat-label>Preço</mat-label>
-    <input [(ngModel)]="precos[i]" matInput placeholder="Ex: 4500" />
-  </mat-form-field>
+  <mat-button-toggle (click)="addNewRow()" style="margin-left: 20px; height: 50px; ">Adicionar</mat-button-toggle>
 
-
-  <button (click)="removerCampo(i)" mat-stroked-button style="height: 60px; background-color: #F2E3D5;">Remover</button>
-</div>
-<button
-  (click)="adicionarCampo()"
-  mat-stroked-button
-  *ngIf="afterSelect"
-  style="height: 60px; background-color: #bfb8ae; margin-left: 20px;">
-  Adicionar campo
-</button>
+</table>

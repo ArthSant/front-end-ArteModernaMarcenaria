@@ -7,14 +7,15 @@ import { ModalPerguntaExcluirComponent } from '../clientes/list-clientes/modal-p
 import { ClienteServiceService } from '../services/cliente-service.service';
 import { UserServiceService } from '../services/user-service.service';
 import { ModalMudarStatusComponent } from './modal-mudar-status/modal-mudar-status.component';
+import { PedidoServiceService } from '../services/pedido-service.service';
 
 
-export interface Cliente {
-  idCliente: string;
-  name: string;
+export interface Pedido {
+  id:number;
+  nome: string;
+  nomePedido: string;
   cpf:string;
-  contato: string;
-  email:string;
+  status: string;
 
 }
 
@@ -32,15 +33,15 @@ export class AtualizarPedidoComponent {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  constructor(private clienteService:ClienteServiceService,public dialog:MatDialog,private userService:UserServiceService) {
+  constructor(private clienteService:ClienteServiceService,public dialog:MatDialog,private userService:UserServiceService,private pedidoService:PedidoServiceService) {
     this.dataSource = new MatTableDataSource(this.listaClientes);
 
   }
 
     listaClientes : any[] = [];
 
-    displayedColumns: string[] = ['idCliente', 'nome', 'cpf', 'contato','email'];
-    dataSource: MatTableDataSource<Cliente>;
+    displayedColumns: string[] = ['id','nome', 'nomePedido', 'cpf', 'status'];
+    dataSource: MatTableDataSource<Pedido>;
 
 
   ngAfterViewInit() {
@@ -60,30 +61,36 @@ export class AtualizarPedidoComponent {
 
   ngOnInit () : void {
 
-    this.pegarClientes();
+    this.pegarPedidos("EM_ANDAMENTO");
 
   }
 
 
 
-  pegarClientes() {
-    this.clienteService.getList().subscribe((data : Cliente[] )=> {
-        this.dataSource.data = data;
-        console.log(data);
 
+  pegarPedidos(option:any) {
+    this.pedidoService.getByStatus(option).subscribe((data : Pedido[] )=> {
+        this.dataSource.data = data;
     })
   }
 
+  updateStatus(campo0:number,campo1:string,campo2:string,campo3:string) {
+      const statusDTO = {
+        id:campo0,
+        cpf:campo1,
+        nomePedido:campo2,
+        status:campo3
 
-  deleteUser(id:number) {
-      console.log(id);
-      this.userService.setId(id);
-      this.dialog.open(ModalPerguntaExcluirComponent);
+      }
 
-  }
+      console.log(statusDTO);
 
-  changeStatus(id:number) {
-      this.dialog.open(ModalMudarStatusComponent);
+
+      this.pedidoService.updateByStatus(statusDTO).subscribe(response => {
+        console.log(response);
+
+      });
+
   }
 
 
