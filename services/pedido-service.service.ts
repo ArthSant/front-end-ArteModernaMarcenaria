@@ -21,4 +21,13 @@ export class PedidoServiceService {
      updateByStatus(data:object) : Observable<any> {
         return this.http.put(`${this.url}/atualizarStatus`,data);
      }
+
+     getPedidosByCpf(cpf:string) : Observable<any> {
+          return this.http.get(`${this.url}/byCliente/${cpf}`)
+     }
+
+     getCountByStatus(status:string) : Observable<any> {
+
+        return this.http.get(`${this.url}/QuantidadeporStatus/${status}`);
+     }
 }

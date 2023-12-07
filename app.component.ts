@@ -12,12 +12,14 @@ const TREE_DATA: FoodNode[] = [
   {
     name: 'Cliente',
     children: [{name: 'Cadastrar'}, {name: 'Listar'}],
+
   },
+  /*
   {
     name: 'Fornecedor',
     children: [{name: 'Registrar'}, {name: 'Lista'}, {name: 'Produtos'}],
   },
-
+  */
   {
     name:'Simulação',
     children:[{name:'Orçamento'},{name:'Relatório'}]

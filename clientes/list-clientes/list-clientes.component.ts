@@ -76,9 +76,9 @@ export class ListClientesComponent {
   }
 
 
-  deleteUser(id:number) {
-      console.log(id);
-      this.userService.setId(id);
+  deleteUser(cpf:string) {
+      console.log(cpf);
+      this.userService.setId(cpf);
       this.dialog.open(ModalPerguntaExcluirComponent);
 
   }

@@ -38,7 +38,7 @@
     <ng-container matColumnDef="email">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
       <td mat-cell *matCellDef="let row"> {{row.email}}
-        <button mat-fab color="#f0f0f0" style="float: right; margin-right: 20px; height: 35px; width: 35px; box-shadow: none  ;"  aria-label="Example icon button with a delete icon" (click)="deleteUser(row.idCliente)">
+        <button mat-fab color="#f0f0f0" style="float: right; margin-right: 20px; height: 35px; width: 35px; box-shadow: none  ;"  aria-label="Example icon button with a delete icon" (click)="deleteUser(row.cpf)">
           <mat-icon style="font-size: 22px;">delete</mat-icon>
         </button>
       </td>

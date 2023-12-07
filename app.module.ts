@@ -40,7 +40,6 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { EmAndamentoComponent } from "./pedidos/status/status.component";
 import { MatSelectModule } from "@angular/material/select";
-import { NotFoundComponent } from "./clientes/registrar-pedido/modal/not-found/not-found.component";
 
 import {  MatDialogModule } from "@angular/material/dialog";
 import { HomeComponent } from "./home/home.component";
@@ -50,6 +49,7 @@ import { OrcamentoComponent } from "./orcamento/orcamento.component";
 import { ModalPerguntaExcluirComponent } from "./clientes/list-clientes/modal-pergunta-excluir/modal-pergunta-excluir.component";
 import { AtualizarPedidoComponent } from "./atualizar-pedido/atualizar-pedido.component";
 import { ModalMudarStatusComponent } from "./atualizar-pedido/modal-mudar-status/modal-mudar-status.component";
+import { ModalCadastroSucessoComponent } from './clientes/form-cadastro-cliente/modal-cadastro-sucesso/modal-cadastro-sucesso.component';
 
 @NgModule({
   declarations: [
@@ -60,12 +60,12 @@ import { ModalMudarStatusComponent } from "./atualizar-pedido/modal-mudar-status
     ListaComponent,
     RegistrarPedidoComponent,
     EmAndamentoComponent,
-    NotFoundComponent,
     HomeComponent,
     OrcamentoComponent,
     ModalPerguntaExcluirComponent,
     AtualizarPedidoComponent,
     ModalMudarStatusComponent,
+    ModalCadastroSucessoComponent,
   ],
   imports: [
     BrowserModule,

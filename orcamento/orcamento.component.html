@@ -18,16 +18,17 @@
       [(value)]="selectedOption"
       (selectionChange)="afterSelectedOption($event)"
     >
-      <mat-option *ngFor="let option of options" [value]="option.value">
-        {{ option.viewValue }}
+      <mat-option *ngFor="let option of options"
+      [value]="option" >
+        {{ option }}
       </mat-option>
     </mat-select>
   </mat-form-field>
 </p>
 
-<table style="display: flex; justify-content: center; align-items: center;">
-  <thead>
-    <tr>
+<table style="margin-left: auto;  margin-right: auto; border: thin solid lightgrey; padding: 20px; box-shadow: 3px 5px 5px lightgrey;" *ngIf = "afterSelect">
+  <thead *ngIf="afterFirstAdd">
+    <tr style="border: thin solid black;">
       <th>Nome</th>
       <th>Preço</th>
       <th>Qnt.</th>
@@ -38,11 +39,15 @@
       <td><input class="input-row" type="text" [(ngModel)]="item.nome"></td>
       <td><input class="input-row" type="text" [(ngModel)]="item.preco" style="width: 60px;"></td>
       <td><input class="input-row" type="text" [(ngModel)]="item.quantidade" style="width: 40px;"></td>
-      <td><button (click)="removeRow(i)">Remover</button></td>
+      <td><mat-button-toggle style="margin-left: 10px;"  (click)="removeRow(i)">Remover</mat-button-toggle></td>
     </tr>
   </tbody>
 
 
   <mat-button-toggle (click)="addNewRow()" style="margin-left: 20px; height: 50px; ">Adicionar</mat-button-toggle>
+  <mat-button-toggle  style="float: left;" (click)="calcOrcamento()">Calcular</mat-button-toggle>
+  <p style="font-size: 1.1rem;margin-top: 40px ;" *ngIf="calcClick">Preço total: <strong>R$ {{sumPrice}}</strong>
+  </p>
+  <mat-button-toggle style="margin-left:auto" *ngIf="calcClick">Finalizar</mat-button-toggle>
 
 </table>

@@ -1,5 +1,6 @@
 import { ClienteServiceService } from 'src/app/services/cliente-service.service';
 import { Component } from '@angular/core';
+import { PedidoServiceService } from '../services/pedido-service.service';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-    constructor(private clienteService:ClienteServiceService) {}
+    constructor(private clienteService:ClienteServiceService,private pedidoService:PedidoServiceService) {}
 
   clienteCount:number = 0;
   finalizadosCount:number = 0;
@@ -17,6 +18,15 @@ export class HomeComponent {
        this.clienteService.getCount().subscribe(quantidade => {
             this.clienteCount=quantidade;
        })
+
+       this.pedidoService.getCountByStatus('FINALIZADO').subscribe(quantidade => {
+          this.finalizadosCount = quantidade;
+       })
+
+
+       this.pedidoService.getCountByStatus('EM_ANDAMENTO').subscribe(quantidade => {
+        this.emAndamentoCount = quantidade;
+     })
     }
 
 }

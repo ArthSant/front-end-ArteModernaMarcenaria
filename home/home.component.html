@@ -1,4 +1,4 @@
-<mat-card class="example-card" style="background-color:  #F2E3D5;">
+<mat-card class="example-card" style="background-color:  #F2EADF;">
   <mat-card-header >
     <mat-icon class="mat-18">how_to_reg</mat-icon>
   </mat-card-header>
@@ -8,22 +8,22 @@
   </mat-card-content>
  </mat-card>
 
-<mat-card class="example-card" style="background-color: #BFB8AE">
+<mat-card class="example-card" style="background-color: #F2EADF">
   <mat-card-header>
     <mat-icon class="mat-18" style="color:green;">check_circle_outline</mat-icon>
   </mat-card-header>
   <mat-card-content>
       <p class="subtitle-card">Pedidos Finalizados</p>
-      <p class="count">200</p>
+      <p class="count">{{finalizadosCount}}</p>
   </mat-card-content>
 </mat-card>
 
-<mat-card class="example-card" style="background-color: #F2E3D5">
+<mat-card class="example-card" style="background-color: #F2EADF">
   <mat-card-header>
     <mat-icon class="mat-18">pending_actions</mat-icon>
   </mat-card-header>
   <mat-card-content>
     <p class="subtitle-card">Em Andamento</p>
-    <p class="count">100</p>
+    <p class="count">{{emAndamentoCount}}</p>
   </mat-card-content>
 </mat-card>

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { ClienteServiceService } from '../services/cliente-service.service';
 import { MatDialog } from '@angular/material/dialog';
-import { NotFoundComponent } from '../clientes/registrar-pedido/modal/not-found/not-found.component';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { PedidoServiceService } from '../services/pedido-service.service';
 
 
 interface Produto {
@@ -21,20 +21,23 @@ interface Produto {
 export class OrcamentoComponent {
 
 
-    constructor(private clienteService:ClienteServiceService, public dialog:MatDialog) {}
+    constructor(private pedidoService:PedidoServiceService, public dialog:MatDialog) {}
 
     showSelect = false;
     afterSelect = false;
     produtos: string[] = [];
     precos:string[] = [];
+    afterFirstAdd = false;
+    sumPrice : number = 0;
+    calcClick = false;
 
     consultarCpf(cpf:string) {
         if(cpf != '') {
-            this.clienteService.getUsuario(cpf).subscribe(resultado => {
-                  if(resultado.cpf != null)
+            this.pedidoService.getPedidosByCpf(cpf).subscribe(resultado => {
+                  if(resultado.cpf != null) {
                       this.showSelect = true;
-                  else
-                    this.dialog.open(NotFoundComponent);
+                      this.options = resultado.nomesPedido;
+                  }
 
             })
         }
@@ -42,11 +45,9 @@ export class OrcamentoComponent {
     }
 
     selectedOption: string | undefined; // Variável para armazenar a opção selecionada
-  options = [ // Array de opções para o dropdown
-    { value: 'Finalizados', viewValue: 'Finalizados' },
-    { value: 'Em Andamento', viewValue: 'Em Andamento' },
-    { value: 'Cancelados', viewValue: 'Cancelados' },
-  ];
+
+    options = [];
+
 
 
 
@@ -57,10 +58,24 @@ export class OrcamentoComponent {
   Produto: Produto[] = [];
 
   addNewRow() {
+    this.afterFirstAdd = true;
     this.Produto.push({ nome: '', preco: 0 , quantidade:0 });
   }
 
   removeRow(index: number) {
     this.Produto.splice(index, 1);
+    if(index == 0) {
+      this.afterFirstAdd = false;
+      this.calcClick = false;
+    }
+  }
+
+     calcOrcamento() {
+        this.sumPrice = 0;
+        for (let index = 0; index < this.Produto.length; index++) {
+                  this.sumPrice += this.Produto[index].preco * this.Produto[index].quantidade
+        }
+
+        this.calcClick = true;
   }
 }

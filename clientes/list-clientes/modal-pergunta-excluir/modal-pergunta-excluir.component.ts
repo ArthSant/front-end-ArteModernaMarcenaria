@@ -13,9 +13,12 @@ export class ModalPerguntaExcluirComponent {
   constructor(private userService:UserServiceService,private clienteServie:ClienteServiceService) {}
 
 
-   id  = this.userService.getId();
+   cpf  = this.userService.getCpf();
   deleteUser() {
-    this.clienteServie.deletarUsuarioById(this.id);
+    this.clienteServie.deletarUsuarioByCPF(this.cpf).subscribe(response => {
+      console.log(response);
+
+    });
   }
 
 }

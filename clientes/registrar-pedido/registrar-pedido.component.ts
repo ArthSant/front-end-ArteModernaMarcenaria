@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViaCepService } from 'src/app/services/via-cep.service';
 import {MatDialog} from '@angular/material/dialog';
-import { NotFoundComponent } from './modal/not-found/not-found.component';
+import { ModalCadastroSucessoComponent } from '../form-cadastro-cliente/modal-cadastro-sucesso/modal-cadastro-sucesso.component';
 
 
 @Component({
@@ -19,7 +19,6 @@ export class RegistrarPedidoComponent {
   ngOnInit(): void {
     this.formulario = this.fomrBuilder.group({
        nome:['',Validators.required],
-       sobrenome:['',Validators.required],
        cpf:['',[Validators.required,Validators.minLength(11),Validators.maxLength(14)]],
        contato:['',Validators.required],
        email:'',
@@ -56,7 +55,9 @@ export class RegistrarPedidoComponent {
 
     onSubmit() {
       if(this.formulario.valid) {
-        this.clienteService.cadastrarUsuario(this.formulario.value).subscribe((response => console.log(response)
+        this.clienteService.cadastrarUsuario(this.formulario.value).subscribe((response => {
+          this.dialog.open(ModalCadastroSucessoComponent);
+        }
         ));
 
         }
@@ -71,10 +72,8 @@ export class RegistrarPedidoComponent {
       if(cpf != '') {
           this.clienteService.getUsuario(cpf).subscribe(resultado => {
               console.log(resultado);
-            if(resultado.idCliente != null)
+            if(resultado.cpf != null)
               this.preencherDados(resultado);
-            else
-              this.dialog.open(NotFoundComponent);
 
             })
       }

@@ -15,9 +15,12 @@ export class ClienteServiceService {
     public cadastrarUsuario(usuario:any) : Observable<any> {
       console.log(usuario);
 
-
       return this.http.post<any>(`${this.url}pedido`,usuario);
 
+    }
+
+    public cadastrarCliente(usuario:any) : Observable<any> {
+      return this.http.post<any>(`${this.url}cliente`,usuario);
     }
 
     public deletarUsuarioByCPF(cpf:string) : Observable<any> {

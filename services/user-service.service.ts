@@ -7,13 +7,13 @@ export class UserServiceService {
 
   constructor() { }
 
-     id : number | undefined;
-   setId(id:number) {
-      this.id = id;
+     cpf : string = '';
+   setId(cpf:string) {
+      this.cpf = cpf;
    }
 
-   getId() {
-      return this.id;
+   getCpf() {
+      return this.cpf;
    }
 
 }
